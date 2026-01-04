@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food Price Comparison</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swiper/9.0.0/swiper-bundle.min.css"/>
+  <style>
+    body { margin:0; font-family: 'Poppins', sans-serif; background:#f9f9f9; }
+    header { position:fixed; top:0; width:100%; background:#fff; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1); z-index:1000; }
+    .hero { height:100vh; display:flex; align-items:center; justify-content:center; }
+    .swiper { width:100%; height:100%; }
+    .swiper-slide { display:flex; align-items:center; justify-content:center; font-size:2em; color:#fff; background-size:cover; background-position:center; }
+    .restaurant-card { background:#fff; border-radius:10px; padding:20px; margin:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:transform 0.3s; }
+    .restaurant-card:hover { transform:scale(1.05); }
+    .badge { padding:5px 10px; border-radius:5px; font-size:12px; margin-right:5px; }
+    .organic { background:#4CAF50; color:#fff; }
+    .homemade { background:#FF9800; color:#fff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍴 Food Quality & Price Comparison</h1>
+  </header>
+
+  <!-- Hero Slider -->
+  <section class="hero">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image:url('food1.jpg')">Spice Garden</div>
+        <div class="swiper-slide" style="background-image:url('food2.jpg')">Urban Tandoor</div>
+        <div class="swiper-slide" style="background-image:url('food3.jpg')">Organic Bites</div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  <!-- Restaurant Cards -->
+  <section style="padding:100px 20px;">
+    <div class="restaurant-card">
+      <h2>Spice Garden ⭐ 4.5</h2>
+      <span class="badge organic">Organic</span>
+      <span class="badge homemade">Home-made</span>
+      <p>Masala Dosa - Online ₹80 / Offline ₹70</p>
+    </div>
+    <div class="restaurant-card">
+      <h2>Urban Tandoor ⭐ 4.2</h2>
+      <span class="badge">Non-Organic</span>
+      <p>Paneer Tikka - Online ₹220 / Offline ₹200</p>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swiper/9.0.0/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop:true,
+      autoplay:{ delay:3000 },
+      pagination:{ el:'.swiper-pagination', clickable:true },
+      navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' }
+    });
+  </script>
+</body>
+</html>

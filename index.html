@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover and explore the best restaurants in town">
+  <meta name="theme-color" content="#ff5722">
+  <title>Food Explorer</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- iOS Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Food Explorer">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🍴 Food Explorer</h1>
+    <nav>
+      <a href="#home" onclick="showHome(); return false;">Home</a>
+      <a href="#restaurants" onclick="showRestaurants(); return false;">Restaurants</a>
+      <a href="#compare" onclick="showCompare(); return false;">Compare</a>
+      <a href="#contact" onclick="showContact(); return false;">Contact</a>
+      <button id="installBtn" style="display:none; background:#ff5722; color:white; border:none; padding:8px 20px; border-radius:20px; cursor:pointer; font-weight:600; margin-left:15px;">📱 Install App</button>
+    </nav>
+  </header>
+
+  <!-- Hero Slider -->
+  <section id="heroSlider" class="hero-slider">
+    <div class="slider-container">
+      <div class="slide active" id="slide0">
+        <div class="slide-content">
+          <h2>Loading Trending Restaurants...</h2>
+        </div>
+      </div>
+    </div>
+    <button class="slider-btn prev" onclick="changeSlide(-1)">❮</button>
+    <button class="slider-btn next" onclick="changeSlide(1)">❯</button>
+    <div class="slider-dots" id="sliderDots"></div>
+  </section>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search restaurants by name, rating, or organic...">
+  </div>
+
+  <!-- Restaurant Grid -->
+  <section id="restaurants" class="restaurant-grid"></section>
+
+  <!-- Menu View -->
+  <section id="menuView" class="menu-view"></section>
+
+  <!-- Contact View -->
+  <section id="contactView" style="display:none; padding:100px 40px 60px; text-align:center; opacity:0; transition:opacity 0.5s ease;">
+    <div style="background:rgba(255,255,255,0.95); padding:50px; border-radius:20px; max-width:800px; margin:0 auto; box-shadow:0 8px 30px rgba(0,0,0,0.1);">
+      <h2 style="font-family:'Playfair Display',serif; font-size:36px; color:#ff5722; margin-bottom:20px;">📞 Contact Us</h2>
+      <p style="font-size:18px; color:#666; margin-bottom:40px;">We'd love to hear from you! Get in touch with us.</p>
+      
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:30px; margin-bottom:40px;">
+        <div style="background:#faf7f2; padding:30px; border-radius:15px;">
+          <div style="font-size:40px; margin-bottom:15px;">📧</div>
+          <h3 style="color:#d4af37; margin-bottom:10px;">Email</h3>
+          <a href="mailto:info@foodexplorer.com" style="color:#333; text-decoration:none;">info@foodexplorer.com</a>
+        </div>
+        
+        <div style="background:#faf7f2; padding:30px; border-radius:15px;">
+          <div style="font-size:40px; margin-bottom:15px;">📱</div>
+          <h3 style="color:#d4af37; margin-bottom:10px;">Phone</h3>
+          <a href="tel:+919876543210" style="color:#333; text-decoration:none;">+91 98765 43210</a>
+        </div>
+        
+        <div style="background:#faf7f2; padding:30px; border-radius:15px;">
+          <div style="font-size:40px; margin-bottom:15px;">📍</div>
+          <h3 style="color:#d4af37; margin-bottom:10px;">Address</h3>
+          <p style="color:#333; margin:0;">123 Food Street<br>Bangalore - 560001</p>
+        </div>
+      </div>
+      
+      <div style="background:#faf7f2; padding:30px; border-radius:15px; text-align:left;">
+        <h3 style="color:#d4af37; margin-bottom:20px; text-align:center;">Send us a message</h3>
+        <form style="display:flex; flex-direction:column; gap:15px;">
+          <input type="text" placeholder="Your Name" style="padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px;" required>
+          <input type="email" placeholder="Your Email" style="padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px;" required>
+          <textarea placeholder="Your Message" rows="5" style="padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; resize:vertical;" required></textarea>
+          <button type="submit" style="background:#ff5722; color:white; padding:15px; border:none; border-radius:8px; font-size:16px; font-weight:600; cursor:pointer; transition:background 0.3s;" onmouseover="this.style.background='#e64a19'" onmouseout="this.style.background='#ff5722'">Send Message</button>
+        </form>
+      </div>
+      
+      <button onclick="goBack()" style="margin-top:30px; padding:12px 30px; background:#d4af37; color:#fff; border:none; border-radius:30px; font-size:16px; cursor:pointer; transition:background 0.3s;" onmouseover="this.style.background='#b38f2c'" onmouseout="this.style.background='#d4af37'">⬅ Back to Restaurants</button>
+    </div>
+  </section>
+
+  <!-- Compare View -->
+  <section id="compareView" style="display:none; padding:100px 40px 60px; text-align:center; opacity:0; transition:opacity 0.5s ease;">
+    <div style="background:rgba(255,255,255,0.95); padding:50px; border-radius:20px; max-width:1200px; margin:0 auto; box-shadow:0 8px 30px rgba(0,0,0,0.1);">
+      <h2 style="font-family:'Playfair Display',serif; font-size:36px; color:#ff5722; margin-bottom:20px;">⚖️ Compare Restaurants</h2>
+      <p style="font-size:18px; color:#666; margin-bottom:40px;">Select two restaurants to compare their menus, prices, and ratings</p>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-bottom:30px;">
+        <div>
+          <label style="display:block; font-weight:600; color:#d4af37; margin-bottom:10px;">Restaurant 1</label>
+          <select id="restaurant1" onchange="updateComparison()" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; cursor:pointer;">
+            <option value="">Select Restaurant</option>
+          </select>
+        </div>
+        
+        <div>
+          <label style="display:block; font-weight:600; color:#d4af37; margin-bottom:10px;">Restaurant 2</label>
+          <select id="restaurant2" onchange="updateComparison()" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; cursor:pointer;">
+            <option value="">Select Restaurant</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="comparisonResult"></div>
+      
+      <button onclick="goBack()" style="margin-top:30px; padding:12px 30px; background:#d4af37; color:#fff; border:none; border-radius:30px; font-size:16px; cursor:pointer; transition:background 0.3s;" onmouseover="this.style.background='#b38f2c'" onmouseout="this.style.background='#d4af37'">⬅ Back to Restaurants</button>
+    </div>
+  </section>
+
+  <script src="js/app.js"></script>
+  
+  <!-- PWA Install Prompt -->
+  <div id="installPrompt" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#ff5722; color:white; padding:15px 30px; border-radius:30px; box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:9999;">
+    <span>📱 Install Food Explorer App</span>
+    <button onclick="installPWA()" style="margin-left:15px; background:white; color:#ff5722; border:none; padding:8px 20px; border-radius:20px; font-weight:600; cursor:pointer;">Install</button>
+    <button onclick="dismissPrompt()" style="margin-left:10px; background:transparent; color:white; border:1px solid white; padding:8px 15px; border-radius:20px; cursor:pointer;">Later</button>
+  </div>
+  
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered!', reg))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+    
+    // PWA Install Prompt
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show install button in header
+      installBtn.style.display = 'inline-block';
+      // Also show bottom prompt
+      document.getElementById('installPrompt').style.display = 'block';
+    });
+    
+    // Install button click handler
+    installBtn.addEventListener('click', installPWA);
+    
+    function installPWA() {
+      if (!deferredPrompt) {
+        alert('App is already installed or browser does not support installation. Check the address bar for install icon!');
+        return;
+      }
+      installBtn.style.display = 'none';
+      document.getElementById('installPrompt').style.display = 'none';
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    }
+    
+    function dismissPrompt() {
+      document.getElementById('installPrompt').style.display = 'none';
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>🍴 Food Explorer</h3>
+        <p>Discover the best restaurants in town. Explore authentic flavors, organic ingredients, and home-made delicacies.</p>
+        <p style="margin-top: 15px; color: #d4af37;">Eat Well, Live Well</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home" onclick="showHome(); return false;">Home</a></li>
+          <li><a href="#restaurants" onclick="showRestaurants(); return false;">Restaurants</a></li>
+          <li><a href="#compare" onclick="showCompare(); return false;">Compare</a></li>
+          <li><a href="#contact" onclick="showContact(); return false;">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <ul>
+          <li>📧 info@foodexplorer.com</li>
+          <li>📱 +91 98765 43210</li>
+          <li>📍 123 Food Street, Bangalore - 560001</li>
+          <li>🕐 Mon - Sun: 9:00 AM - 10:00 PM</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="YouTube">📺</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 14px;">Download our app for better experience</p>
+        <button onclick="installPWA()" style="margin-top: 10px; background:#ff5722; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; font-weight:600;">📱 Install App</button>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Food Explorer. All rights reserved.</p>
+      <p>Made with ❤️ for food lovers</p>
+    </div>
+  </footer>
+</body>
+</html>
