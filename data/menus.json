@@ -1,0 +1,72 @@
+{
+  "1": [
+    {"name": "Masala Dosa", "price": "₹120", "rating": 4.7, "img": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=300&h=200&fit=crop"},
+    {"name": "Idli Vada", "price": "₹80", "rating": 4.5, "img": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=300&h=200&fit=crop"},
+    {"name": "Sambar Rice", "price": "₹100", "rating": 4.3, "img": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop"},
+    {"name": "Curd Rice", "price": "₹70", "rating": 4.2, "img": "https://images.unsplash.com/photo-1645177628172-a94c30a5f2e8?w=300&h=200&fit=crop"},
+    {"name": "Filter Coffee", "price": "₹40", "rating": 4.8, "img": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=300&h=200&fit=crop"}
+  ],
+  "2": [
+    {"name": "Paneer Tikka", "price": "₹250", "rating": 4.6, "img": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop"},
+    {"name": "Butter Chicken", "price": "₹320", "rating": 4.8, "img": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop"},
+    {"name": "Naan", "price": "₹40", "rating": 4.4, "img": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=300&h=200&fit=crop"},
+    {"name": "Dal Makhani", "price": "₹180", "rating": 4.5, "img": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=300&h=200&fit=crop"},
+    {"name": "Lassi", "price": "₹60", "rating": 4.3, "img": "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=300&h=200&fit=crop"}
+  ],
+  "3": [
+    {"name": "Quinoa Salad", "price": "₹220", "rating": 4.9, "img": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=300&h=200&fit=crop"},
+    {"name": "Organic Soup", "price": "₹150", "rating": 4.7, "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"},
+    {"name": "Brown Rice Bowl", "price": "₹200", "rating": 4.8, "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop"},
+    {"name": "Vegan Curry", "price": "₹240", "rating": 4.6, "img": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop"},
+    {"name": "Fruit Smoothie", "price": "₹120", "rating": 4.7, "img": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=300&h=200&fit=crop"}
+  ],
+  "4": [
+    {"name": "Burger", "price": "₹150", "rating": 4.0, "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&h=200&fit=crop"},
+    {"name": "French Fries", "price": "₹80", "rating": 3.9, "img": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=300&h=200&fit=crop"},
+    {"name": "Hot Dog", "price": "₹100", "rating": 3.8, "img": "https://images.unsplash.com/photo-1612392062798-2384f2c88922?w=300&h=200&fit=crop"},
+    {"name": "Milkshake", "price": "₹90", "rating": 4.1, "img": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=200&fit=crop"},
+    {"name": "Pizza Slice", "price": "₹120", "rating": 4.0, "img": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop"}
+  ],
+  "5": [
+    {"name": "Caesar Salad", "price": "₹180", "rating": 4.7, "img": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300&h=200&fit=crop"},
+    {"name": "Greek Salad", "price": "₹200", "rating": 4.8, "img": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300&h=200&fit=crop"},
+    {"name": "Smoothie Bowl", "price": "₹160", "rating": 4.6, "img": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=300&h=200&fit=crop"},
+    {"name": "Avocado Toast", "price": "₹140", "rating": 4.5, "img": "https://images.unsplash.com/photo-1588137378633-dea1336ce1e2?w=300&h=200&fit=crop"},
+    {"name": "Herbal Tea", "price": "₹60", "rating": 4.4, "img": "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=300&h=200&fit=crop"}
+  ],
+  "6": [
+    {"name": "Biryani", "price": "₹280", "rating": 4.7, "img": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=300&h=200&fit=crop"},
+    {"name": "Kebab", "price": "₹300", "rating": 4.5, "img": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&h=200&fit=crop"},
+    {"name": "Butter Naan", "price": "₹50", "rating": 4.3, "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop"},
+    {"name": "Chicken Curry", "price": "₹260", "rating": 4.6, "img": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=300&h=200&fit=crop"},
+    {"name": "Raita", "price": "₹40", "rating": 4.2, "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop"}
+  ],
+  "7": [
+    {"name": "Dal Fry", "price": "₹120", "rating": 4.8, "img": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop"},
+    {"name": "Chapati", "price": "₹20", "rating": 4.6, "img": "https://images.unsplash.com/photo-1626074353765-517a681e40be?w=300&h=200&fit=crop"},
+    {"name": "Vegetable Curry", "price": "₹150", "rating": 4.7, "img": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop"},
+    {"name": "Rice", "price": "₹50", "rating": 4.5, "img": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=300&h=200&fit=crop"},
+    {"name": "Pickle", "price": "₹30", "rating": 4.4, "img": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop"}
+  ],
+  "8": [
+    {"name": "Margherita", "price": "₹250", "rating": 4.2, "img": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=300&h=200&fit=crop"},
+    {"name": "Pepperoni", "price": "₹300", "rating": 4.3, "img": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=300&h=200&fit=crop"},
+    {"name": "Veggie Pizza", "price": "₹280", "rating": 4.1, "img": "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=300&h=200&fit=crop"},
+    {"name": "Garlic Bread", "price": "₹100", "rating": 4.0, "img": "https://images.unsplash.com/photo-1619897499915-de9b63f5ee79?w=300&h=200&fit=crop"},
+    {"name": "Soft Drink", "price": "₹50", "rating": 3.9, "img": "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=300&h=200&fit=crop"}
+  ],
+  "9": [
+    {"name": "Vegan Burger", "price": "₹200", "rating": 4.9, "img": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=300&h=200&fit=crop"},
+    {"name": "Tofu Stir Fry", "price": "₹240", "rating": 4.8, "img": "https://images.unsplash.com/photo-1540914124281-342587941389?w=300&h=200&fit=crop"},
+    {"name": "Vegan Pasta", "price": "₹260", "rating": 4.7, "img": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&h=200&fit=crop"},
+    {"name": "Green Smoothie", "price": "₹130", "rating": 4.8, "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=300&h=200&fit=crop"},
+    {"name": "Vegan Ice Cream", "price": "₹110", "rating": 4.9, "img": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300&h=200&fit=crop"}
+  ],
+  "10": [
+    {"name": "Fish Curry", "price": "₹320", "rating": 4.3, "img": "https://images.unsplash.com/photo-1580959375944-d408a4a4b7a7?w=300&h=200&fit=crop"},
+    {"name": "Prawn Fry", "price": "₹380", "rating": 4.4, "img": "https://images.unsplash.com/photo-1633758571390-c0cfe1b08e46?w=300&h=200&fit=crop"},
+    {"name": "Crab Masala", "price": "₹450", "rating": 4.5, "img": "https://images.unsplash.com/photo-1559737558-2baee230b5e5?w=300&h=200&fit=crop"},
+    {"name": "Seafood Soup", "price": "₹200", "rating": 4.2, "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"},
+    {"name": "Coconut Rice", "price": "₹100", "rating": 4.1, "img": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop"}
+  ]
+}

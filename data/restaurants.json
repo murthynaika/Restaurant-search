@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Spice Garden",
+    "rating": 4.5,
+    "speciality": "South Indian",
+    "is_home_made": true,
+    "organic": true,
+    "address": "123 MG Road, Bangalore - 560001",
+    "phone": "+91 98765 43210",
+    "hours": "11:00 AM - 10:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Urban Tandoor",
+    "rating": 4.2,
+    "speciality": "North Indian BBQ",
+    "is_home_made": false,
+    "organic": false,
+    "address": "456 Indiranagar, Bangalore - 560038",
+    "phone": "+91 98765 43211",
+    "hours": "12:00 PM - 11:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1592861956120-e524fc739696?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Organic Bites",
+    "rating": 4.8,
+    "speciality": "Organic Fusion",
+    "is_home_made": true,
+    "organic": true,
+    "address": "789 Koramangala, Bangalore - 560095",
+    "phone": "+91 98765 43212",
+    "hours": "10:00 AM - 10:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Street Treats",
+    "rating": 3.9,
+    "speciality": "Fast Food",
+    "is_home_made": false,
+    "organic": false,
+    "address": "321 Whitefield, Bangalore - 560066",
+    "phone": "+91 98765 43213",
+    "hours": "10:00 AM - 11:30 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Green Bowl",
+    "rating": 4.6,
+    "speciality": "Salads & Healthy",
+    "is_home_made": true,
+    "organic": true,
+    "address": "654 HSR Layout, Bangalore - 560102",
+    "phone": "+91 98765 43214",
+    "hours": "9:00 AM - 9:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Royal Curry House",
+    "rating": 4.3,
+    "speciality": "Mughlai",
+    "is_home_made": false,
+    "organic": false,
+    "address": "987 Jayanagar, Bangalore - 560041",
+    "phone": "+91 98765 43215",
+    "hours": "12:00 PM - 11:30 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1562059390-a761a084768e?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Home Spice",
+    "rating": 4.7,
+    "speciality": "Home-style Meals",
+    "is_home_made": true,
+    "organic": true,
+    "address": "147 BTM Layout, Bangalore - 560076",
+    "phone": "+91 98765 43216",
+    "hours": "11:00 AM - 10:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1493770348161-369560ae357d?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Pizza Planet",
+    "rating": 4.0,
+    "speciality": "Italian Pizza",
+    "is_home_made": false,
+    "organic": false,
+    "address": "258 Electronic City, Bangalore - 560100",
+    "phone": "+91 98765 43217",
+    "hours": "11:00 AM - 12:00 AM",
+    "images": [
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Vegan Delight",
+    "rating": 4.9,
+    "speciality": "Vegan Cuisine",
+    "is_home_made": true,
+    "organic": true,
+    "address": "369 Marathahalli, Bangalore - 560037",
+    "phone": "+91 98765 43218",
+    "hours": "10:00 AM - 10:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1505576391880-b3f9d713dc4f?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1564759224907-65b945ff0e8f?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Seafood Shack",
+    "rating": 4.1,
+    "speciality": "Coastal Seafood",
+    "is_home_made": false,
+    "organic": false,
+    "address": "741 Malleswaram, Bangalore - 560003",
+    "phone": "+91 98765 43219",
+    "hours": "12:00 PM - 11:00 PM",
+    "images": [
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop"
+    ]
+  }
+]

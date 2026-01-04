@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food Explorer</title>
+  <style>
+	/* Global */
+/* Global */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('nature.avif') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+
+/* Header & Navigation */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6); /* semi-transparent */
+  backdrop-filter: blur(10px);           /* blur effect */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+
+header h1 {
+  color: #ff5722;
+  font-size: 24px;
+  font-family: 'Playfair Display', serif;
+}
+nav a {
+  color: #333;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+nav a:hover { color: #ff5722; }
+
+/* Search Bar */
+.search-bar {
+  text-align: center;
+  margin: 100px 30px 30px;
+}
+.search-bar input {
+  padding: 12px;
+  width: 60%;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Restaurant Grid */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  transition: opacity 0.5s ease;
+}
+
+/* Restaurant Card */
+.restaurant-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform, box-shadow;
+}
+.restaurant-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  border: 1px solid #d4af37; /* gold accent */
+}
+.restaurant-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #2c2c2c;
+  margin-bottom: 10px;
+}
+.restaurant-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.organic { background:#4CAF50; color:#fff; }
+.homemade { background:#FF9800; color:#fff; }
+
+/* Menu View */
+.menu-view {
+  display: none;
+  padding: 60px;
+  text-align: center;
+  animation: fadeIn 0.8s ease forwards;
+}
+.menu-view h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: #2c2c2c;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #d4af37;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Tabs */
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.tab-btn {
+  padding: 15px 40px;
+  background: rgba(255,255,255,0.7);
+  border: 2px solid #d4af37;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c2c2c;
+}
+.tab-btn:hover {
+  background: rgba(212,175,55,0.2);
+  transform: translateY(-2px);
+}
+.tab-btn.active {
+  background: #d4af37;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Dine Out Section */
+.dine-out-container {
+  background: rgba(255,255,255,0.95);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+.restaurant-info {
+  text-align: left;
+  margin-bottom: 30px;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0;
+  background: #faf7f2;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #2c2c2c;
+}
+.info-item strong {
+  color: #d4af37;
+  margin-right: 10px;
+  min-width: 100px;
+}
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
+}
+.action-btn {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.call-btn {
+  background: #4CAF50;
+  color: white;
+}
+.call-btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76,175,80,0.4);
+}
+.direction-btn {
+  background: #2196F3;
+  color: white;
+}
+.direction-btn:hover {
+  background: #0b7dda;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(33,150,243,0.4);
+}
+.restaurant-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 30px 0;
+}
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.menu-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #2c2c2c;
+  margin: 30px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d4af37;
+  text-align: center;
+}
+.dine-out-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.dine-menu-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.dine-menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+}
+.dine-menu-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.dine-menu-card-info {
+  padding: 15px;
+}
+.dine-menu-card-name {
+  font-weight: 600;
+  font-size: 18px;
+  color: #2c2c2c;
+  margin-bottom: 8px;
+}
+.dine-menu-card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dine-menu-card-price {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 16px;
+}
+.dine-menu-card-rating {
+  color: #ff9800;
+  font-size: 14px;
+}
+
+/* Menu Items */
+.menu-card {
+  background: #faf7f2;
+  border-radius: 12px;
+  padding: 0;
+  margin: 15px auto;
+  max-width: 550px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: #444;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+  display: flex;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.menu-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(212,175,55,0.3);
+  border-color: #d4af37;
+  background: #fff;
+}
+.menu-card:hover .item-image {
+  transform: scale(1.1);
+}
+.menu-card:hover .item-name {
+  color: #d4af37;
+}
+.menu-card:hover .item-price {
+  transform: scale(1.1);
+}
+.menu-card .item-image {
+  width: 150px;
+  height: 120px;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.menu-card .item-content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-card .item-name {
+  font-weight: 600;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  color: #2c2c2c;
+}
+.menu-card .item-details {
+  text-align: right;
+}
+.menu-card .item-price {
+  font-size: 18px;
+  color: #d4af37;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.menu-card .item-rating {
+  font-size: 14px;
+  color: #ff9800;
+}
+.menu-card:nth-child(1) { animation-delay: 0.2s; }
+.menu-card:nth-child(2) { animation-delay: 0.4s; }
+.menu-card:nth-child(3) { animation-delay: 0.6s; }
+.menu-card:nth-child(4) { animation-delay: 0.8s; }
+.menu-card:nth-child(5) { animation-delay: 1s; }
+
+/* Back Button */
+.back-btn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: #d4af37;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.back-btn:hover { background: #b38f2c; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍴 Food Explorer</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#restaurants" onclick="goBack(); return false;">Restaurants</a>
+      <a href="#compare">Compare</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search restaurants by name, rating, or organic...">
+  </div>
+
+  <!-- Restaurant Grid -->
+  <section id="restaurants" class="restaurant-grid"></section>
+
+  <!-- Menu View -->
+  <section id="menuView" class="menu-view"></section>
+
+  <script>
+    // Restaurant JSON (basic info only)
+    const restaurants = [
+      { "id":1,"name":"Spice Garden","rating":4.5,"speciality":"South Indian","is_home_made":true,"organic":true,"address":"123 MG Road, Bangalore - 560001","phone":"+91 98765 43210","hours":"11:00 AM - 10:00 PM","images":["https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&fit=crop"] },
+      { "id":2,"name":"Urban Tandoor","rating":4.2,"speciality":"North Indian BBQ","is_home_made":false,"organic":false,"address":"456 Indiranagar, Bangalore - 560038","phone":"+91 98765 43211","hours":"12:00 PM - 11:00 PM","images":["https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1592861956120-e524fc739696?w=400&h=300&fit=crop"] },
+      { "id":3,"name":"Organic Bites","rating":4.8,"speciality":"Organic Fusion","is_home_made":true,"organic":true,"address":"789 Koramangala, Bangalore - 560095","phone":"+91 98765 43212","hours":"10:00 AM - 10:00 PM","images":["https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&h=300&fit=crop"] },
+      { "id":4,"name":"Street Treats","rating":3.9,"speciality":"Fast Food","is_home_made":false,"organic":false,"address":"321 Whitefield, Bangalore - 560066","phone":"+91 98765 43213","hours":"10:00 AM - 11:30 PM","images":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400&h=300&fit=crop"] },
+      { "id":5,"name":"Green Bowl","rating":4.6,"speciality":"Salads & Healthy","is_home_made":true,"organic":true,"address":"654 HSR Layout, Bangalore - 560102","phone":"+91 98765 43214","hours":"9:00 AM - 9:00 PM","images":["https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=300&fit=crop"] },
+      { "id":6,"name":"Royal Curry House","rating":4.3,"speciality":"Mughlai","is_home_made":false,"organic":false,"address":"987 Jayanagar, Bangalore - 560041","phone":"+91 98765 43215","hours":"12:00 PM - 11:30 PM","images":["https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1562059390-a761a084768e?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=400&h=300&fit=crop"] },
+      { "id":7,"name":"Home Spice","rating":4.7,"speciality":"Home-style Meals","is_home_made":true,"organic":true,"address":"147 BTM Layout, Bangalore - 560076","phone":"+91 98765 43216","hours":"11:00 AM - 10:00 PM","images":["https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1493770348161-369560ae357d?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop"] },
+      { "id":8,"name":"Pizza Planet","rating":4.0,"speciality":"Italian Pizza","is_home_made":false,"organic":false,"address":"258 Electronic City, Bangalore - 560100","phone":"+91 98765 43217","hours":"11:00 AM - 12:00 AM","images":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop"] },
+      { "id":9,"name":"Vegan Delight","rating":4.9,"speciality":"Vegan Cuisine","is_home_made":true,"organic":true,"address":"369 Marathahalli, Bangalore - 560037","phone":"+91 98765 43218","hours":"10:00 AM - 10:00 PM","images":["https://images.unsplash.com/photo-1505576391880-b3f9d713dc4f?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1564759224907-65b945ff0e8f?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400&h=300&fit=crop"] },
+      { "id":10,"name":"Seafood Shack","rating":4.1,"speciality":"Coastal Seafood","is_home_made":false,"organic":false,"address":"741 Malleswaram, Bangalore - 560003","phone":"+91 98765 43219","hours":"12:00 PM - 11:00 PM","images":["https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop","https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop"] }
+    ];
+
+    // Separate Menu JSONs keyed by restaurant ID
+    const menus = {
+      1: [
+        {name:"Masala Dosa", price:"₹120", rating:4.7, img:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=300&h=200&fit=crop"},
+        {name:"Idli Vada", price:"₹80", rating:4.5, img:"https://images.unsplash.com/photo-1630383249896-424e482df921?w=300&h=200&fit=crop"},
+        {name:"Sambar Rice", price:"₹100", rating:4.3, img:"https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop"},
+        {name:"Curd Rice", price:"₹70", rating:4.2, img:"https://images.unsplash.com/photo-1645177628172-a94c30a5f2e8?w=300&h=200&fit=crop"},
+        {name:"Filter Coffee", price:"₹40", rating:4.8, img:"https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=300&h=200&fit=crop"}
+      ],
+      2: [
+        {name:"Paneer Tikka", price:"₹250", rating:4.6, img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop"},
+        {name:"Butter Chicken", price:"₹320", rating:4.8, img:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop"},
+        {name:"Naan", price:"₹40", rating:4.4, img:"https://images.unsplash.com/photo-1628840042765-356cda07504e?w=300&h=200&fit=crop"},
+        {name:"Dal Makhani", price:"₹180", rating:4.5, img:"https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=300&h=200&fit=crop"},
+        {name:"Lassi", price:"₹60", rating:4.3, img:"https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=300&h=200&fit=crop"}
+      ],
+      3: [
+        {name:"Quinoa Salad", price:"₹220", rating:4.9, img:"https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=300&h=200&fit=crop"},
+        {name:"Organic Soup", price:"₹150", rating:4.7, img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"},
+        {name:"Brown Rice Bowl", price:"₹200", rating:4.8, img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop"},
+        {name:"Vegan Curry", price:"₹240", rating:4.6, img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop"},
+        {name:"Fruit Smoothie", price:"₹120", rating:4.7, img:"https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=300&h=200&fit=crop"}
+      ],
+      4: [
+        {name:"Burger", price:"₹150", rating:4.0, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&h=200&fit=crop"},
+        {name:"French Fries", price:"₹80", rating:3.9, img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=300&h=200&fit=crop"},
+        {name:"Hot Dog", price:"₹100", rating:3.8, img:"https://images.unsplash.com/photo-1612392062798-2384f2c88922?w=300&h=200&fit=crop"},
+        {name:"Milkshake", price:"₹90", rating:4.1, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=200&fit=crop"},
+        {name:"Pizza Slice", price:"₹120", rating:4.0, img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop"}
+      ],
+      5: [
+        {name:"Caesar Salad", price:"₹180", rating:4.7, img:"https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300&h=200&fit=crop"},
+        {name:"Greek Salad", price:"₹200", rating:4.8, img:"https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300&h=200&fit=crop"},
+        {name:"Smoothie Bowl", price:"₹160", rating:4.6, img:"https://images.unsplash.com/photo-1590301157890-4810ed352733?w=300&h=200&fit=crop"},
+        {name:"Avocado Toast", price:"₹140", rating:4.5, img:"https://images.unsplash.com/photo-1588137378633-dea1336ce1e2?w=300&h=200&fit=crop"},
+        {name:"Herbal Tea", price:"₹60", rating:4.4, img:"https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=300&h=200&fit=crop"}
+      ],
+      6: [
+        {name:"Biryani", price:"₹280", rating:4.7, img:"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=300&h=200&fit=crop"},
+        {name:"Kebab", price:"₹300", rating:4.5, img:"https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&h=200&fit=crop"},
+        {name:"Butter Naan", price:"₹50", rating:4.3, img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop"},
+        {name:"Chicken Curry", price:"₹260", rating:4.6, img:"https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=300&h=200&fit=crop"},
+        {name:"Raita", price:"₹40", rating:4.2, img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop"}
+      ],
+      7: [
+        {name:"Dal Fry", price:"₹120", rating:4.8, img:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop"},
+        {name:"Chapati", price:"₹20", rating:4.6, img:"https://images.unsplash.com/photo-1626074353765-517a681e40be?w=300&h=200&fit=crop"},
+        {name:"Vegetable Curry", price:"₹150", rating:4.7, img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop"},
+        {name:"Rice", price:"₹50", rating:4.5, img:"https://images.unsplash.com/photo-1516684732162-798a0062be99?w=300&h=200&fit=crop"},
+        {name:"Pickle", price:"₹30", rating:4.4, img:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop"}
+      ],
+      8: [
+        {name:"Margherita", price:"₹250", rating:4.2, img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=300&h=200&fit=crop"},
+        {name:"Pepperoni", price:"₹300", rating:4.3, img:"https://images.unsplash.com/photo-1628840042765-356cda07504e?w=300&h=200&fit=crop"},
+        {name:"Veggie Pizza", price:"₹280", rating:4.1, img:"https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=300&h=200&fit=crop"},
+        {name:"Garlic Bread", price:"₹100", rating:4.0, img:"https://images.unsplash.com/photo-1619897499915-de9b63f5ee79?w=300&h=200&fit=crop"},
+        {name:"Soft Drink", price:"₹50", rating:3.9, img:"https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=300&h=200&fit=crop"}
+      ],
+      9: [
+        {name:"Vegan Burger", price:"₹200", rating:4.9, img:"https://images.unsplash.com/photo-1520072959219-c595dc870360?w=300&h=200&fit=crop"},
+        {name:"Tofu Stir Fry", price:"₹240", rating:4.8, img:"https://images.unsplash.com/photo-1540914124281-342587941389?w=300&h=200&fit=crop"},
+        {name:"Vegan Pasta", price:"₹260", rating:4.7, img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&h=200&fit=crop"},
+        {name:"Green Smoothie", price:"₹130", rating:4.8, img:"https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=300&h=200&fit=crop"},
+        {name:"Vegan Ice Cream", price:"₹110", rating:4.9, img:"https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300&h=200&fit=crop"}
+      ],
+      10:[
+        {name:"Fish Curry", price:"₹320", rating:4.3, img:"https://images.unsplash.com/photo-1580959375944-d408a4a4b7a7?w=300&h=200&fit=crop"},
+        {name:"Prawn Fry", price:"₹380", rating:4.4, img:"https://images.unsplash.com/photo-1633758571390-c0cfe1b08e46?w=300&h=200&fit=crop"},
+        {name:"Crab Masala", price:"₹450", rating:4.5, img:"https://images.unsplash.com/photo-1559737558-2baee230b5e5?w=300&h=200&fit=crop"},
+        {name:"Seafood Soup", price:"₹200", rating:4.2, img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"},
+        {name:"Coconut Rice", price:"₹100", rating:4.1, img:"https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop"}
+      ]
+    };
+
+    const container = document.getElementById("restaurants");
+    const menuView = document.getElementById("menuView");
+
+    function renderRestaurants(list){
+      container.innerHTML = "";
+      list.forEach(r=>{
+        const div = document.createElement("div");
+        div.className="restaurant-card";
+        div.innerHTML = `
+          <h2>${r.name} ⭐ ${r.rating}</h2>
+          <p><strong>Speciality:</strong> ${r.speciality}</p>
+          ${r.organic ? '<span class="badge organic">Organic</span>' : ''}
+          ${r.is_home_made ? '<span class="badge homemade">Home-made</span>' : ''}
+        `;
+        div.onclick = ()=>showMenu(r.id,r.name);
+        container.appendChild(div);
+      });
+    }
+
+    function showMenu(id,name){
+      container.style.opacity="0";
+      const restaurant = restaurants.find(r => r.id === id);
+      setTimeout(()=>{
+        container.style.display="none";
+        menuView.style.display="block";
+        menuView.style.opacity="0";
+        const menuItems = menus[id].map(i=>`
+          <div class="menu-card">
+            <img src="${i.img}" alt="${i.name}" class="item-image">
+            <div class="item-content">
+              <div class="item-name">${i.name}</div>
+              <div class="item-details">
+                <div class="item-price">${i.price}</div>
+                <div class="item-rating">⭐ ${i.rating}</div>
+              </div>
+            </div>
+          </div>
+        `).join("");
+        
+        const dineOutMenu = menus[id].map(i=>`
+          <div class="dine-menu-card">
+            <img src="${i.img}" alt="${i.name}">
+            <div class="dine-menu-card-info">
+              <div class="dine-menu-card-name">${i.name}</div>
+              <div class="dine-menu-card-details">
+                <span class="dine-menu-card-price">${i.price}</span>
+                <span class="dine-menu-card-rating">⭐ ${i.rating}</span>
+              </div>
+            </div>
+          </div>
+        `).join("");
+        
+        const galleryImages = restaurant.images.map(img=>`
+          <img src="${img}" alt="${name} ambience" class="gallery-image">
+        `).join("");
+        
+        menuView.innerHTML = `
+          <h2>${name}</h2>
+          <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('order-online')">🛵 Order Online</button>
+            <button class="tab-btn" onclick="switchTab('dine-out')">🍽️ Dine Out</button>
+          </div>
+          <div id="order-online" class="tab-content active">
+            ${menuItems}
+          </div>
+          <div id="dine-out" class="tab-content">
+            <div class="dine-out-container">
+              <div class="restaurant-info">
+                <div class="info-item">
+                  <strong>📍 Address:</strong>
+                  <span>${restaurant.address}</span>
+                </div>
+                <div class="info-item">
+                  <strong>📞 Phone:</strong>
+                  <span>${restaurant.phone}</span>
+                </div>
+                <div class="info-item">
+                  <strong>⏰ Hours:</strong>
+                  <span>${restaurant.hours}</span>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <button class="action-btn call-btn" onclick="window.open('tel:${restaurant.phone}')">
+                  📞 Call Now
+                </button>
+                <button class="action-btn direction-btn" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurant.address)}', '_blank')">
+                  🗺️ Get Directions
+                </button>
+              </div>
+              <div class="restaurant-gallery">
+                ${galleryImages}
+              </div>
+              <h3 class="menu-section-title">Our Menu</h3>
+              <div class="dine-out-menu">
+                ${dineOutMenu}
+              </div>
+            </div>
+          </div>
+          <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        `;
+        setTimeout(()=>menuView.style.opacity="1",100);
+      },500);
+    }
+    
+    function switchTab(tabName){
+      // Remove active class from all tabs and content
+      document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content=>content.classList.remove('active'));
+      
+      // Add active class to clicked tab and corresponding content
+      event.target.classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+
+    function goBack(){
+      menuView.style.opacity="0";
+      setTimeout(()=>{
+        menuView.style.display="none";
+        container.style.display="grid";
+        setTimeout(()=>container.style.opacity="1",100);
+      },500);
+    }
+
+    renderRestaurants(restaurants);
+
+    document.getElementById("search").addEventListener("input", e=>{
+      const q = e.target.value.toLowerCase();
+      const filtered = restaurants.filter(r =>
+        r.name.toLowerCase().includes(q) ||
+        r.speciality.toLowerCase().includes(q) ||
+        String(r.rating).includes(q) ||
+        (q.includes("organic") && r.organic) ||
+        (q.includes("home") && r.is_home_made)
+      );
+      renderRestaurants(filtered);
+    });
+  </script>
+</body>
+</html>
